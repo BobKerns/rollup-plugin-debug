@@ -1,0 +1,24 @@
+{
+  "name": "row-padding",
+  "version": "1.0.0",
+  "description": "Fixed-width text formatting, including collumns and subcolumns",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BobKerns/row-padding.git"
+  },
+  "keywords": [
+    "text",
+    "format",
+    "typescript"
+  ],
+  "author": "Bob Kerns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BobKerns/row-padding/issues"
+  },
+  "homepage": "https://github.com/BobKerns/row-padding#readme"
+}
