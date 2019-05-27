@@ -1,0 +1,23 @@
+# Created by .ignore support plugin (hsz.mobi)
+### rwk template
+*#
+.*
+*~
+*.bak
+.DS_Store
+.Thumbs.db
+\#*
+.save
+.tmp
+tmp/
+out
+*.map
+*.log
+log
+stdout
+stderr
+/*-report.html
+node_modules
+/build
+/dist
+!.gitignore

@@ -1,10 +1,12 @@
 {
   "name": "row-padding",
   "version": "1.0.0",
-  "description": "Fixed-width text formatting, including collumns and subcolumns",
-  "main": "index.js",
+  "description": "Fixed-width text formatting, including columns and subcolumns",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prebuild": "tsc --build tsconfig.json",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,20 @@
   "bugs": {
     "url": "https://github.com/BobKerns/row-padding/issues"
   },
-  "homepage": "https://github.com/BobKerns/row-padding#readme"
+  "homepage": "https://github.com/BobKerns/row-padding#readme",
+  "dependencies": {
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "wcsize": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "rollup": "^1.12.3",
+    "rollup-plugin-terser": "^5.0.0",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "rollup-plugin-visualizer": "^1.1.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  }
 }
