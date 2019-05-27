@@ -1,20 +1,25 @@
 {
-  "name": "row-padding",
-  "version": "1.0.0",
-  "description": "Fixed-width text formatting, including columns and subcolumns",
-  "main": "dist/index.js",
+  "name": "npm-template",
+  "version": "0.1.0",
+  "description": "Template project",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.mjs",
   "scripts": {
+    "devtools": "tsc --project devtools/tsconfig-devtools.json",
+    "pretest": "npm run build",
     "test": "jest",
-    "prebuild": "tsc --build tsconfig.json",
-    "build": "rollup -c"
+    "prebuild": "npm run devtools",
+    "build": "rollup -c",
+    "clean": "rm -rf build lib devtools/build devtools/lib",
+    "prepare": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BobKerns/row-padding.git"
   },
   "keywords": [
-    "text",
-    "format",
+    "template",
+    "node",
     "typescript"
   ],
   "author": "Bob Kerns",

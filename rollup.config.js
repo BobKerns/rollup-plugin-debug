@@ -7,30 +7,38 @@ import visualizer from 'rollup-plugin-visualizer';
 const pkg = require('./package');
 
 export default {
-    input: pkg.main || 'lib/index.js',
+    input: ['src/index.ts'],
     output: [
         {
-            file: `dist/${pkg.name}.umd.js`,
+            file: `lib/${pkg.name}.umd.js`,
+            sourcemapFile: `lib/${pkg.name}.umd.map`,
             name: 'mixme',
-            format: 'umd'
+            format: 'umd',
+            sourcemap: true
         },
         {
-            file: `dist/${pkg.name}.cjs.js`,
-            format: 'cjs'
+            file: `lib/${pkg.name}.cjs.js`,
+            sourcemapFile: `lib/${pkg.name}.umd.map`,
+            format: 'cjs',
+            sourcemap: true
         },
         {
-            file: `dist/${pkg.name}.esm.js`,
-            format: 'esm'
+            file: `lib/${pkg.name}.esm.mjs`,
+            sourcemapFile: `lib/${pkg.name}.umd.map`,
+            format: 'esm',
+            sourcemap: true
         }
     ],
     plugins: [
+        resolve(),
         typescript({
             objectHashIgnoreUnknownHack: true
         }),
-        commonjs(),
-        resolve(),
+        commonjs({
+            extensions: [".js", ".ts"]
+        }),
+
         terser({
-            // verbosity: 3,
             module: true
         }),
         {

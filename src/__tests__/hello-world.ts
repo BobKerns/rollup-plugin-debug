@@ -1,4 +1,4 @@
-import hello from "../src/index";
+import hello from "../index";
 
 describe("Dummy test", () => {
     test("Hello", () => {

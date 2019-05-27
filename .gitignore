@@ -20,4 +20,8 @@ stderr
 node_modules
 /build
 /dist
+/lib
+/devtools/build
+/devtools/dist
+/devtools /lib
 !.gitignore
