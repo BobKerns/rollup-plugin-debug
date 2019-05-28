@@ -6,6 +6,6 @@ with typescript.
 
 # Features
 * Simple starting point.
-* Full typescript integration, except config scripts.
-  * There is not usually enough benefit to outweigh the minor complexity.
-  * If you need it, just import
+* Full typescript integration
+  * Generated Javascript files and source are placed in lib/ for easy cleanu and less clutter.
+  * Javascript configuration files redirect to typescript ones in config/lib.

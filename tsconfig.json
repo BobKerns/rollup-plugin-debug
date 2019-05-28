@@ -1,5 +1,5 @@
 {
-  "exclude": ["devtools", "lib", "build", ".idea", ".rpt2-cache"],
+  "exclude": ["config", "devtools", "lib", "build", ".idea", ".rpt2-cache"],
   "compilerOptions": {
     /* Basic Options */
     "target": "es2015",
@@ -82,4 +82,5 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
+  "types":"./rollup-plugin-tenser.d.ts"
 }

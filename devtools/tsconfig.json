@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig",
+
+  "include": ["*.ts", "**/*.ts"],
+  "exclude": ["build", "lib"],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "ESNext",
+    "outDir": "lib",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuild-info",
+    "moduleResolution": "node",
+    "inlineSourceMap": false
+  }
+}

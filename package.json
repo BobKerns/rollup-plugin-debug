@@ -4,13 +4,16 @@
   "description": "Template project",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.mjs",
+  "typings": "module-typings.d.ts",
   "scripts": {
-    "devtools": "tsc --project devtools/tsconfig-devtools.json",
+    "config": "tsc --project config/tsconfig.json",
+    "predevtools": "npm run config",
+    "devtools": "tsc --project devtools/tsconfig.json",
     "pretest": "npm run build",
     "test": "jest",
     "prebuild": "npm run devtools",
     "build": "rollup -c",
-    "clean": "rm -rf build lib devtools/build devtools/lib",
+    "clean": "rm -rf build lib .tsbuild-info  devtools/build devtools/lib devtools/.tsbuild-info config/build config/lib config/.tsbuild-info",
     "prepare": "npm run clean && npm run build"
   },
   "repository": {

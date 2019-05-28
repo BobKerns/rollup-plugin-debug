@@ -23,5 +23,8 @@ node_modules
 /lib
 /devtools/build
 /devtools/dist
-/devtools /lib
+/devtools/lib
+/config/build
+/config/dist
+/config/lib
 !.gitignore
