@@ -1,7 +1,7 @@
 {
   "name": "npm-template",
   "version": "0.1.0",
-  "description": "Template project",
+  "description": "Template project for typescript and rollup",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.mjs",
   "typings": "module-typings.d.ts",
@@ -14,23 +14,24 @@
     "prebuild": "npm run devtools",
     "build": "rollup -c",
     "clean": "rm -rf build lib .tsbuild-info  devtools/build devtools/lib devtools/.tsbuild-info config/build config/lib config/.tsbuild-info",
-    "prepare": "npm run clean && npm run build"
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BobKerns/row-padding.git"
+    "url": "git+https://github.com/BobKerns/npm-template.git"
   },
   "keywords": [
     "template",
     "node",
-    "typescript"
+    "typescript",
+    "rollup"
   ],
   "author": "Bob Kerns",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BobKerns/row-padding/issues"
+    "url": "https://github.com/BobKerns/npm-template/issues"
   },
-  "homepage": "https://github.com/BobKerns/row-padding#readme",
+  "homepage": "https://github.com/BobKerns/npm-template#readme",
   "dependencies": {
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.0",
