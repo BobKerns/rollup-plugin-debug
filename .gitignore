@@ -1,7 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### rwk template
+
+!/.idea/dictionaries/rwk.xml
+
+!/.idea/**
 *#
-.*
 *~
 *.bak
 .DS_Store
@@ -16,6 +19,7 @@ out
 log
 stdout
 stderr
+
 /*-report.html
 node_modules
 /build
@@ -28,3 +32,34 @@ node_modules
 /config/dist
 /config/lib
 !.gitignore
+
+# IDE settings are a mixed bag.
+
+# Include project code style settings. This can be controversial, but it can also reduce friction by
+# automating some of the style. You may want to add it to .git/info/exclude if you want to have personal
+# private changes. But see .editorconfig which abstracts out key points for sharing.
+!/.idea/codeStyles
+# Useful to share, terms that appear and would be flagged by spell checking.
+!.idea/dictionaries/**
+!/.idea/markdown-navigator/*
+!/.idea/markdown-navigator.xml
+!/.idea/misc.xml
+!.idea/vcs.xml
+
+# Common editor settings helpful for sharing across users and IDEs
+!/.editorconfig
+
+# You'll have to configure this specific to your project, and perhaps include it.
+/.idea/copyright
+# These would be useful, but have hard-coded project names.
+/.idea/scopes
+# Variable, personal
+/.idea/workspace.xml
+# Hardcoded project name
+/.idea/modules.xml
+# Hardcoded project name in the filename.
+/.idea/npm-template.iml
+
+#.*
+/.rpt2_cache
+
