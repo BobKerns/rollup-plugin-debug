@@ -1,0 +1,9 @@
+{
+  // Inherit the project settings.
+  "extends": "../tsconfig",
+
+  "compilerOptions": {
+    // Project layout. Changes not recommended.
+    // "outDir":"lib",
+    "rootDir": ".",
+}

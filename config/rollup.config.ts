@@ -6,7 +6,10 @@ import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 
-const pkg = require('./package.json');
+const mode = process.env.NODE_ENV;
+const dev = mode === 'development';
+
+const pkg = require('../package.json');
 
 export default {
     input: ['src/index.ts'],

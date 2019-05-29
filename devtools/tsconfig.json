@@ -1,19 +1,32 @@
 {
+  // Inherit the project settings.
   "extends": "../tsconfig",
 
+  // Project layout. Changes not recommended.
   "include": ["*.ts", "**/*.ts"],
   "exclude": ["build", "lib"],
+
   "compilerOptions": {
-    "target": "es2015",
-    "module": "ESNext",
-    "outDir": "lib",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "rootDir": ".",
-    "incremental": true,
-    "tsBuildInfoFile": "./.tsbuild-info",
+    // Module and Node interoperability section. Do not change.
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
-    "inlineSourceMap": false
+
+    // Project layout. Changes not recommended.
+    "outDir":"lib",
+    "rootDir": ".",
+
+    // Generation of .d.ts files. and debugging source maps.
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+
+    // Speed up compilation. Not important at this scale.
+    // But if we don't separate the build info cache, it will
+    // get out of sync clean theå lib/ directory.
+    "incremental": true,
+    "tsBuildInfoFile": "./build/.tsbuild-info"
   }
 }

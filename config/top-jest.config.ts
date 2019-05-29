@@ -1,4 +1,8 @@
-module.exports = {
+/*
+ * Copyright © 2019. Licensed under MIT license.
+ */
+
+export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: [

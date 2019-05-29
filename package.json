@@ -1,5 +1,5 @@
 {
-  "name": "npm-template",
+  "name": "npm-typescript-template",
   "version": "0.1.0",
   "description": "Template project for typescript and rollup",
   "main": "lib/index.cjs.js",
@@ -13,8 +13,8 @@
     "test": "jest",
     "prebuild": "npm run devtools",
     "build": "rollup -c",
-    "clean": "rm -rf build lib .tsbuild-info  devtools/build devtools/lib devtools/.tsbuild-info config/build config/lib config/.tsbuild-info",
-    "prepublishOnly": "npm run clean && npm run build"
+    "clean": "rm -rf build lib devtools/build devtools/lib config/build config/lib",
+    "prepublishOnly": "npm run clean && NODE_ENV=production npm run build"
   },
   "repository": {
     "type": "git",
