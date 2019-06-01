@@ -1,0 +1,7 @@
+language: node_js
+# Build with both the latest and latest long-term-support by default
+node_js:
+  - node
+  - lts/*
+# Build by running the tests (this is the Travis default)
+script: npm test
