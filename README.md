@@ -23,3 +23,19 @@ it makes it easier to understand and to know how you wish to deviate.
   * Clear path to adding additional features
 
 
+
+
+# Content
+
+## Primary organization
+
+The important files are the outputs included in the published module, and the sources that
+produce them. The rest are supporting mechanisms.
+
+## package.json
+
+This describes the package, it's role in the world
+
+## /lib/
+
+This holds the built Javascript files

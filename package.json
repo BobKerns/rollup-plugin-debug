@@ -4,17 +4,19 @@
   "description": "Template project for typescript and rollup",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.mjs",
-  "typings": "module-typings.d.ts",
   "scripts": {
-    "config": "tsc --project config/tsconfig.json",
-    "predevtools": "npm run config",
-    "devtools": "tsc --project devtools/tsconfig.json",
+    "build:config": "tsc --project config/tsconfig.json",
+    "prebuild:devtools": "npm run build:config",
+    "build:devtools": "tsc --project devtools/tsconfig.json",
     "pretest": "npm run build",
     "test": "jest",
-    "prebuild": "npm run devtools",
+    "prebuild": "npm run build:devtools",
     "build": "rollup -c",
-    "clean": "rm -rf build lib devtools/build devtools/lib config/build config/lib",
+    "clean": "rm -rf .rpt2_cache build lib devtools/build devtools/lib config/build config/lib",
     "prepublishOnly": "npm run clean && NODE_ENV=production npm run build"
+  },
+  "bin": {
+    "hello": "bin/hello.jsq"
   },
   "repository": {
     "type": "git",
@@ -39,7 +41,9 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
+    "@types/ramda": "^0.26.9",
     "jest": "^24.8.0",
+    "ramda": "^0.26.1",
     "rollup": "^1.12.3",
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "^0.21.1",

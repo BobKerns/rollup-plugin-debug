@@ -5,44 +5,72 @@ import commonjs from 'rollup-plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
+import {basename} from 'path';
+import {ModuleFormat, OutputOptions, RollupOptions} from "rollup";
+import {chain as flatMap} from 'ramda';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 
-const pkg = require('../package.json');
+// const undBase = basename(pkg.browser || pkg.name);
 
-export default {
-    input: ['src/index.ts'],
-    output: [
+interface Package {
+    name: string;
+    main?: string;
+    module?: string;
+    browser?: string;
+    [K: string]: any;
+}
+const pkg: Package  = require('../package.json');
+
+export const outputs = (p: Package) => flatMap((e: OutputOptions) => (e.file ? [e] : []),
+    [
         {
-            file: `lib/${pkg.name}.umd.js`,
-            sourcemapFile: `lib/${pkg.name}.umd.map`,
-            name: 'mixme',
+            file: p.browser,
+            sourcemapFile: `${basename(p.browser || '')}.map`,
+            name: p.name,
             format: 'umd',
             sourcemap: true
         },
         {
-            file: `lib/${pkg.name}.cjs.js`,
-            sourcemapFile: `lib/${pkg.name}.umd.map`,
+            file: p.main,
+            sourcemapFile: `${basename(p.main || '')}.map`,
             format: 'cjs',
             sourcemap: true
         },
         {
-            file: `lib/${pkg.name}.esm.mjs`,
-            sourcemapFile: `lib/${pkg.name}.umd.map`,
+            file: p.module,
+            sourcemapFile: `${basename(p.modulex || '')}.map`,
             format: 'esm',
             sourcemap: true
         }
-    ],
+    ]);
+
+const dbg: any = {name: 'dbg'};
+['resolveId', 'load', 'transform', 'generateBundle'].forEach(
+    f => dbg[f] = function (...args: any) {
+        this.warn(`${f}: ${args.map((a: any) => JSON.stringify(a, null, 2)).join(', ')}`);
+        return null;}
+);
+
+const spec: RollupOptions = {
+    input: "foo",
+}
+export default {
+    input: ['src/index.ts'],
+    output: outputs(pkg),
+
     plugins: [
+        dbg,
         resolve(),
         typescript({
-            objectHashIgnoreUnknownHack: true
+            include: "src/*.ts",
+            objectHashIgnoreUnknownHack: true,
+            verbosity: 3
         }),
         commonjs({
             extensions: [".js", ".ts"]
         }),
-
         terser({
             module: true
         }),
