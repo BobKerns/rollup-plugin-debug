@@ -1,7 +1,7 @@
 {
-  "name": "npm-typescript-template",
+  "name": "rollup-plugin-debug",
   "version": "0.1.0",
-  "description": "Template project for typescript and rollup",
+  "description": "Rollup plugin for debugging plugins and builds",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.mjs",
   "scripts": {
@@ -16,11 +16,10 @@
     "prepublishOnly": "npm run clean && NODE_ENV=production npm run build"
   },
   "bin": {
-    "hello": "bin/hello.jsq"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BobKerns/npm-template.git"
+    "url": "git+https://github.com/BobKerns/rollup-plugin-debug.git"
   },
   "keywords": [
     "template",
@@ -31,9 +30,9 @@
   "author": "Bob Kerns",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BobKerns/npm-template/issues"
+    "url": "https://github.com/BobKerns/rollup-plugin-debug/issues"
   },
-  "homepage": "https://github.com/BobKerns/npm-template#readme",
+  "homepage": "https://github.com/BobKerns/rollup-plugin-debug#readme",
   "dependencies": {
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.0",
