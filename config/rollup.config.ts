@@ -61,12 +61,12 @@ export default {
     output: outputs(pkg),
 
     plugins: [
-        dbg,
+        // dbg,
         resolve(),
         typescript({
             include: "src/*.ts",
             objectHashIgnoreUnknownHack: true,
-            verbosity: 3
+            verbosity: 1
         }),
         commonjs({
             extensions: [".js", ".ts"]
