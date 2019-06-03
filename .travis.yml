@@ -1,4 +1,9 @@
 language: node_js
+# Test on a selection of operating systems
+os:
+  - linux
+  - osx
+  - windows
 # Build with both the latest and latest long-term-support by default
 node_js:
   - node
