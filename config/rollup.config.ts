@@ -6,7 +6,7 @@ import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 import {basename} from 'path';
-import {ModuleFormat, OutputOptions, RollupOptions} from "rollup";
+import {OutputOptions} from "rollup";
 import {chain as flatMap} from 'ramda';
 
 const mode = process.env.NODE_ENV;
@@ -48,14 +48,11 @@ export const outputs = (p: Package) => flatMap((e: OutputOptions) => (e.file ? [
 
 const dbg: any = {name: 'dbg'};
 ['resolveId', 'load', 'transform', 'generateBundle'].forEach(
-    f => dbg[f] = function (...args: any) {
+    f => dbg[f] = function (...args: any[]) {
         this.warn(`${f}: ${args.map((a: any) => JSON.stringify(a, null, 2)).join(', ')}`);
         return null;}
 );
 
-const spec: RollupOptions = {
-    input: "foo",
-}
 export default {
     input: ['src/index.ts'],
     output: outputs(pkg),
