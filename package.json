@@ -16,7 +16,7 @@
     "prepublishOnly": "npm run clean && NODE_ENV=production npm run build"
   },
   "bin": {
-    "hello": "bin/hello.jsq"
+    "hello": "bin/hello.js"
   },
   "repository": {
     "type": "git",
