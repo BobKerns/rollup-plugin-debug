@@ -8,6 +8,7 @@ export default {
   testMatch: [
     "**/__tests__/*.{ts,tsx,js,jsx,mjs}",
       "!**/*.d.ts?(x)",
-      "!**/suite-*.*"
+      "!**/suite-*.*",
+      "!**/build/**"
   ]
 };

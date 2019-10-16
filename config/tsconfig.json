@@ -4,7 +4,7 @@
 
    // Project layout. Changes not recommended.
   "include": ["*.ts", "**/*.ts"],
-  "exclude": ["build", "lib"],
+  "exclude": ["__tests__/**"],
 
   "compilerOptions": {
     // Module and Node interoperability section. Do not change.
@@ -13,20 +13,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
 
-    // Project layout. Changes not recommended.
-    "outDir":"lib",
-    "rootDir": ".",
-
-     // Generation of .d.ts files. and debugging source maps.
-    "declaration": false,
-    "declarationMap": false,
-    "sourceMap": false,
-    "inlineSourceMap": true,
-
-    // Speed up compilation. Not important at this scale.
-    // But if we don't separate the build info cache, it will
-    // get out of sync clean theå lib/ directory.
+    // Speed up compilation. Not important at this scale, buyt it sneaks up on you.
     "incremental": true,
-    "tsBuildInfoFile": "./build/.tsbuild-info"
+    "tsBuildInfoFile": "../build/.tsbuild-info-config"
   }
 }

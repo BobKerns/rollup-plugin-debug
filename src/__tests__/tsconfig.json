@@ -1,0 +1,18 @@
+{
+  // Inherit the project settings.
+  "extends": "../tsconfig.json",
+  "include": ["*.ts", "**/*.ts"],
+  "exclude": [],
+
+  "references": [
+    {"path": "../tsconfig.json"}
+  ],
+
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../build/.tsbuild-info-src-tests",
+    // Project layout. Changes not recommended.
+    //"outDir":" ../../../../build",
+    //"rootDir": "../.."
+  }
+}
+
