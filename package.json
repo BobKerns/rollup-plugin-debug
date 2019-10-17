@@ -11,12 +11,14 @@
     "build:config": "",
     "prebuild:devtools": "npm run build:config",
     "build:devtools": "tsc --build devtools/tsconfig.json",
-    "pretest": "tsc --build src/__tests__ && npm run build:config",
+    "pretest": "tsc --build src/__tests__ && npm run build:config && ls -lR src build/src",
     "test": "jest",
     "prebuild": "tsc --build tsconfig-rollup.json && tsc --build config",
     "build": "rollup -c",
-    "clean": "rm -rf build lib",
-    "prepublishOnly": "npm run clean && NODE_ENV=production npm run build"
+    "postbuild": "npm run docs",
+    "clean": "rm -rf build lib docs",
+    "prepublishOnly": "npm run clean && NODE_ENV=production npm run build",
+    "docs": "GRAPHVIZ_DOT=\"$(which dot)\" typedoc -out docs/api src/"
   },
   "bin": {
     "hello": "bin/hello.js"
@@ -52,6 +54,11 @@
     "rollup-plugin-typescript2": "^0.21.1",
     "rollup-plugin-visualizer": "^1.1.1",
     "ts-jest": "^24.0.2",
+    "typedoc": "^0.15.0",
+    "typedoc-plantuml-extended": "0.0.1",
+    "typedoc-plugin-external-module-name": "^2.1.0",
+    "typedoc-plugin-mermaid": "^1.1.0",
+    "typedoc-plugin-npm-externals": "^1.0.0",
     "typescript": "^3.4.5"
   }
 }
