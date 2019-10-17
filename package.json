@@ -12,7 +12,7 @@
     "prebuild:devtools": "npm run build:config",
     "build:devtools": "tsc --build devtools/tsconfig.json",
     "pretest": "tsc --build src/__tests__ && npm run build:config && ls -lR src build/src",
-    "test": "jest --listTests --debug --verbose",
+    "test": "jest --debug --verbose",
     "prebuild": "tsc --build tsconfig-rollup.json && tsc --build config",
     "build": "rollup -c",
     "postbuild": "npm run docs",
