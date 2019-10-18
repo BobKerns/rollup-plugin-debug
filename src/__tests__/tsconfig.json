@@ -15,8 +15,8 @@
   "compilerOptions": {
     // "tsBuildInfoFile": "../../build/.tsbuild-info-src-tests",
     // Project layout. Changes not recommended.
-    // "outDir": "../../build",
-    // "rootDir": "../.."
+    "outDir": "../../build",
+    "rootDir": "../.."
   }
 }
 

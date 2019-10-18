@@ -8,7 +8,7 @@
  * @preferred
  */
 
-import R from 'ramda';
+import * as R from 'ramda';
 /**
  * [Typedoc](https://typedoc.org/guides/doccomments/) is supported. It supports:
  *
