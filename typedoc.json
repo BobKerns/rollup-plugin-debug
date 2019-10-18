@@ -1,0 +1,7 @@
+{
+  "mode": "modules",
+  "exclude": "**/__tests__/**",
+  "name": "NPM Template Project (rename me!)",
+  "readme": "src/README.md",
+  "includes": "./"
+}

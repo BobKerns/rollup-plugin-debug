@@ -24,6 +24,7 @@ stderr
 node_modules
 /build
 /dist
+/docs
 /lib
 /devtools/build
 /devtools/dist
