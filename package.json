@@ -1,5 +1,5 @@
 {
-  "name": "npm-typescript-template",
+  "name": "npm-typescript-rollup-template",
   "version": "0.1.0",
   "description": "Template project for typescript and rollup",
   "main": "lib/cjs/index.js",
@@ -15,17 +15,17 @@
     "test": "jest",
     "prebuild": "npm run build:devtools",
     "build": "rollup -c",
-    "postbuild": "npm run docs",
+    "postbuild": "npm run build:docs",
     "clean": "rm -rf build lib docs",
     "prepublishOnly": "npm run clean && NODE_ENV=production npm run build",
-    "docs": "GRAPHVIZ_DOT=\"$(which dot)\" typedoc -out docs/api src/"
+    "build:docs": "GRAPHVIZ_DOT=\"$(which dot)\" typedoc -out docs/api src/"
   },
   "bin": {
     "hello": "bin/hello.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BobKerns/npm-template.git"
+    "url": "git+https://github.com/BobKerns/npm-typescript-rollup-template.git"
   },
   "keywords": [
     "template",
@@ -36,9 +36,9 @@
   "author": "Bob Kerns",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BobKerns/npm-template/issues"
+    "url": "https://github.com/BobKerns/npm-typescript-rollup-template/issues"
   },
-  "homepage": "https://github.com/BobKerns/npm-template#readme",
+  "homepage": "https://github.com/BobKerns/npm-typescript-rollup-template#readme",
   "dependencies": {
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.0",

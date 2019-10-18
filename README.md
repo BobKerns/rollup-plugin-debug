@@ -34,8 +34,26 @@ produce them. The rest are supporting mechanisms.
 
 ## package.json
 
-This describes the package, it's role in the world
+This describes the package, it's role in the world,
+
+You should edit package.json, with special attention to these fields:
+* `name:`
+* `version:`
+* `description:`
+* `repository.url:`
+* `keywords:`
+* `license:`
+* `bugs.url:`
+* `homepage:`
 
 ## /lib/
 
-This holds the built Javascript files
+This holds the built Javascript files. By default, three versions are built, for compatibility with various module systems. Ultimately, the world is moving toward the ECMAScript module format, but in the meantime, 
+### /lib/esm
+This holds files in the ECMAScript module format.
+
+### /lib/cjs
+This uses the CommonJS used traditionally by node.
+
+### /lib/umd
+This holds files in the UMD format, a flat file loadable by web browsers.
