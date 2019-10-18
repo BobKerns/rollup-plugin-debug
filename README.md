@@ -1,4 +1,4 @@
-# npm-template
+# Project Template npm-typescript-rollup-template
 
 This lays out a common project structure, and is hello-world buildable out of the box.
 It focuses on providing an easy-to-understand starting point for integrating
@@ -48,7 +48,7 @@ You should edit package.json, with special attention to these fields:
 
 ## /lib/
 
-This holds the built Javascript files. By default, three versions are built, for compatibility with various module systems. Ultimately, the world is moving toward the ECMAScript module format, but in the meantime, 
+This holds the built Javascript files. By default, three versions are built, for compatibility with various module systems. Ultimately, the world is moving toward the ECMAScript module format, but in the meantime,
 ### /lib/esm
 This holds files in the ECMAScript module format.
 
