@@ -21,9 +21,12 @@ it makes it easier to understand and to know how you wish to deviate.
   * Descriptions of plugins and options.
   * A buildable, testable environment out-of-the-box
   * Clear path to adding additional features
-
-
-
+* Updates and optional features can be flexibliy merged in via git merges.
+  * Regular update scripts break when you make customizations.
+  * Git merges, at worst, give merge conflicts.
+  * Merge conflicts lay out what change was being attempted and why there was a conflict.
+  * Because you have the context for why your change conflicts, it's easier to resolve.
+  * The usual fallback for script-based template configuration is to manually figure out and make the changes.
 
 # Content
 
@@ -57,3 +60,35 @@ This uses the CommonJS used traditionally by node.
 
 ### /lib/umd
 This holds files in the UMD format, a flat file loadable by web browsers.
+
+## [/assets](/assets/README.md)
+Data files to be used in documentation or runtime in the application.
+
+## [/config](/config/README.md)
+This holds files used to globally configure the project. These are often redirected from the project root, to place them in one place, and to enable the use of typescript rather than javascript.
+
+## [/devtools](/devtools/README.md)
+This holds code used to to build the main project. It is built before the main project is configured.
+
+It is initially empty.
+
+## /docs
+A generated directory with documentation. Some content may be installed from [/assets](/assets/README.md)
+
+### /docs/api
+The generated API documentation via [typedoc](https://typedoc.org)
+
+## /node_modules
+This directory is created and managed by [npm](https://npmjs.com), via the `npm install` command.
+
+## [/src](/src/README.md)
+This hierarchy contains the project's source code and related tests.
+
+# Top level files
+* .editorconfig
+* .gitignore
+* .npmignore — hides build infrastructure, sources, etc. from the final npm package.
+* travis.yml -- configuration for building automatically on [Travis](https://travis-ci.com/)
+* rollup.config.js -- redirects to [/config/rollup.config.ts](/config/rollup.config.ts)
+* 
+
