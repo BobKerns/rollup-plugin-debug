@@ -12,6 +12,7 @@ const vm  = require('vm');
 
 import Module from "module";
 
+
 const EXTS = ["", ".js", ".mjs", ".json"];
 
 const DBG =( process.env.DEBUG_REQUIRE_FROM) ? (...args: any[]) => console.log(...args) : () => undefined;
@@ -28,14 +29,23 @@ export function requireFrom(parent: Module, srcDir: string, implDir: string) {
         const childModule = new Module(id, parent);
         childModule.paths = [implDir2, srcDir, ...(parent ? parent.paths : [])];
         DBG("RES", oid, id, codeFile, srcDir, implDir2);
-
-        const nrequire = (p: string) => {
+        const makeResolver = () => {
+            let resolverPaths: { paths?: string[]; };
+            const resolver = ((id: string, options?: { paths?: string[]; }) : string => {
+                options && (resolverPaths = options);
+                return require.resolve(path.relative(srcDir, path.resolve(implDir, id)))
+            }) as RequireResolve;
+            resolver.paths = (request: string) => resolverPaths.paths || null;
+             return resolver;
+        };
+        const nrequire: NodeRequire = ((p: string) : any => {
             if (!p.startsWith('.')) {
                 DBG("Ordinary require:", p);
                 return parent.require(p);
             }
             const apath = path.resolve(srcDir, p);
             if (p.startsWith('..')) {
+                
                 const prelpath = './'+ path.relative(pdir, apath);
                 DBG("Parent require:", p, prelpath);
                 return parent.require(prelpath);
@@ -60,9 +70,9 @@ export function requireFrom(parent: Module, srcDir: string, implDir: string) {
             DBG("LOADED", childModule.filename, p);
             childModule.loaded = true;
             return result;
-        };
+        }) as NodeRequire;
         childModule.require = nrequire;
-        nrequire.resolve = (p: string) => require.resolve(path.relative(srcDir, path.resolve(implDir, p)));
+        nrequire.resolve = makeResolver();
 
         const childGlobal = vm.createContext({
             ...global,

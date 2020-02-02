@@ -45,11 +45,11 @@
     "wcsize": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.9.0",
-    "@types/ramda": "^0.26.39",
+    "@types/jest": "^24.9.1",
+    "@types/ramda": "^0.26.40",
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
-    "rollup": "^1.29.0",
+    "rollup": "^1.31.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.21.2",
     "rollup-plugin-visualizer": "^1.1.1",
