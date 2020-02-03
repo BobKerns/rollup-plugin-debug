@@ -43,8 +43,6 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.0",
     "mermaid": "^8.4.6",
-    "typedoc-plugin-external-module-name": "^3.0.0",
-    "typedoc-plugin-mermaid": "^1.0.0",
     "wcsize": "^1.0.0"
   },
   "devDependencies": {
@@ -60,6 +58,8 @@
     "typedoc": "^0.16.9",
     "typedoc-plantuml-extended": "0.0.1",
     "typedoc-plugin-npm-externals": "^1.0.0",
+    "typedoc-plugin-external-module-name": "^3.0.0",
+    "typedoc-plugin-mermaid": "=1.0.0",
     "typescript": "^3.7.5"
   }
 }
