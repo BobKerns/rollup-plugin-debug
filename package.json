@@ -40,10 +40,6 @@
   },
   "homepage": "https://github.com/BobKerns/npm-typescript-rollup-template#readme",
   "dependencies": {
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.0",
-    "mermaid": "^8.4.6",
-    "wcsize": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.9.1",
@@ -51,6 +47,8 @@
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
     "rollup": "^1.31.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.21.2",
     "rollup-plugin-visualizer": "^1.1.1",
@@ -60,6 +58,8 @@
     "typedoc-plugin-npm-externals": "^1.0.0",
     "typedoc-plugin-external-module-name": "^3.0.0",
     "typedoc-plugin-mermaid": "=1.0.0",
-    "typescript": "^3.7.5"
+    "mermaid": "^8.4.6",
+    "typescript": "^3.7.5",
+    "wcsize": "^1.0.0"
   }
 }
