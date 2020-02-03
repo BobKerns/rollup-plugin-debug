@@ -27,6 +27,7 @@ it makes it easier to understand and to know how you wish to deviate.
   * Merge conflicts lay out what change was being attempted and why there was a conflict.
   * Because you have the context for why your change conflicts, it's easier to resolve.
   * The usual fallback for script-based template configuration is to manually figure out and make the changes.
+ * [Continuous Integration Integration](#continuous-integration-integration)
 
 # Content
 
@@ -48,6 +49,13 @@ You should edit package.json, with special attention to these fields:
 * `license:`
 * `bugs.url:`
 * `homepage:`
+
+## Continuous Integration Integration
+Three free Continuous Integration workflows are configured out of the box.  Remove any you
+you do not need, or disable them in the relevant console.
+* [Circle CI](https://circleci.com)
+* [Travis CI](https://travis-ci.com)
+* [GitHub Workflows (CI)](https://github.com)
 
 ## /lib/
 
@@ -89,6 +97,10 @@ This hierarchy contains the project's source code and related tests.
 * .gitignore
 * .npmignore — hides build infrastructure, sources, etc. from the final npm package.
 * travis.yml -- configuration for building automatically on [Travis](https://travis-ci.com/)
+* .circle-ci/ -- configuration for building automatically on [Circle CI](https://circleci.com)
+*  .github/workflows -- configuration for building automatically on GitHub Workflows
 * rollup.config.js -- redirects to [/config/rollup.config.ts](/config/rollup.config.ts)
-* 
+*
+
+[Continuous Integration Integration]: #continuous-integration-integration
 
