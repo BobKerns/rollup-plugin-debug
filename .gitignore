@@ -19,6 +19,7 @@ out
 log
 stdout
 stderr
+*.orig
 
 /*-report.html
 node_modules
