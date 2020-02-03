@@ -40,8 +40,8 @@
   },
   "homepage": "https://github.com/BobKerns/npm-typescript-rollup-template#readme",
   "dependencies": {
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.0",
     "wcsize": "^1.0.0"
   },
   "devDependencies": {
