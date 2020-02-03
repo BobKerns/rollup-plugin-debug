@@ -52,7 +52,10 @@ You should edit package.json, with special attention to these fields:
 
 ## Continuous Integration Integration
 Three free Continuous Integration workflows are configured out of the box.  Remove any you
-you do not need, or disable them in the relevant console.
+you do not need, or disable them in the relevant service.
+
+You probably do not need multiple builds on multiple services, but this will let you see each and make a choice. For simple things at least, the features are very similar. It is very useful to be able to build and test on multiple environments in parallel, something each of the services provides.
+
 * [Circle CI](https://circleci.com)
 * [Travis CI](https://travis-ci.com)
 * [GitHub Workflows (CI)](https://github.com)
