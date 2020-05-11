@@ -1,0 +1,22 @@
+{
+  // Inherit the project settings.
+  "extends": "../tsconfig.json",
+  "files": [
+    "error-handling.ts",
+    "hello-world.ts"
+  ],
+  "include": ["*.ts"],
+  "exclude": ["node_modules"],
+
+  "references": [
+    // {"path": "../tsconfig.json"}
+  ],
+
+  "compilerOptions": {
+    // "tsBuildInfoFile": "../../build/.tsbuild-info-src-tests",
+    // Project layout. Changes not recommended.
+    "outDir": "../../build",
+    "rootDir": "../.."
+  }
+}
+

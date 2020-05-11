@@ -1,19 +1,26 @@
-// Copyright  by Bob Kerns. Licensed under MIT license
+/**
+ * @module NpmTemplate
+ * Copyright  by Bob Kerns. Licensed under MIT license
+ */
 
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+/**
+ * A largely self-configuring rollup configuration.
+ */
+
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
-import {basename} from 'path';
-import {ModuleFormat, OutputOptions, RollupOptions} from "rollup";
+import {OutputOptions, PluginContext, RollupOptions} from "rollup";
 import {chain as flatMap} from 'ramda';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 
-// const undBase = basename(pkg.browser || pkg.name);
-
+/**
+ * A rough description of the contents of [[package.json]].
+ */
 interface Package {
     name: string;
     main?: string;
@@ -23,51 +30,83 @@ interface Package {
 }
 const pkg: Package  = require('../package.json');
 
+/**
+ * Compute the list of outputs from [[package.json]]'s fields
+ * @param p the [[package.json]] declaration
+ */
 export const outputs = (p: Package) => flatMap((e: OutputOptions) => (e.file ? [e] : []),
     [
         {
             file: p.browser,
-            sourcemapFile: `${basename(p.browser || '')}.map`,
             name: p.name,
             format: 'umd',
-            sourcemap: true
+            sourcemap: true,
+            globals: {
+                "ramda": "ramda"
+            }
         },
         {
             file: p.main,
-            sourcemapFile: `${basename(p.main || '')}.map`,
             format: 'cjs',
             sourcemap: true
         },
         {
             file: p.module,
-            sourcemapFile: `${basename(p.modulex || '')}.map`,
             format: 'esm',
             sourcemap: true
         }
-    ]);
+    ]) as OutputOptions;
 
+/**
+ * Compute the set of main entrypoints from [[package.json]].
+ * @param p The contents of [[package.json]]
+ * @param entries A array of keys to check for entry points in [[package.json]].
+ */
+const mainFields = (p: Package, entries: string[]) =>
+    flatMap((f: string) => (pkg[f] ? [f] : []) as ReadonlyArray<string>,
+        entries);
+
+/**
+ * A useful little plugin to trace some of the behavior of rollup.
+ */
 const dbg: any = {name: 'dbg'};
-['resolveId', 'load', 'transform', 'generateBundle'].forEach(
-    f => dbg[f] = function (...args: any) {
+['resolveId', 'load', 'transform', 'generateBundle', 'writeBundle'].forEach(
+    f => dbg[f] = function (...args: any[]) {
         this.warn(`${f}: ${args.map((a: any) => JSON.stringify(a, null, 2)).join(', ')}`);
         return null;}
 );
 
-const spec: RollupOptions = {
-    input: "foo",
-}
-export default {
-    input: ['src/index.ts'],
-    output: outputs(pkg),
+/**
+ * Check for modules that should be considered external and not bundled directly.
+ * By default, we consider those from node_modules to be external,
+ * @param id
+ * @param from
+ * @param resolved
+ */
+const checkExternal = (id: string, from: string, resolved: boolean) =>
+    (resolved
+        ? /node_modules/.test(id)
+        : !/^\./.test(id));
 
+const options: RollupOptions = {
+    input:'./src/index.ts',
+    output: outputs(pkg),
+    external: checkExternal,
     plugins: [
-        dbg,
-        resolve(),
-        typescript({
-            include: "src/*.ts",
-            objectHashIgnoreUnknownHack: true,
-            verbosity: 3
+        // dbg,
+        resolve({
+            // Check for these in package.json
+            mainFields: mainFields(pkg, ['module', 'main', 'browser'])
         }),
+         typescript({
+             tsconfig: 'src/tsconfig.json',
+             include: "src/*.ts",
+             objectHashIgnoreUnknownHack: true,
+             verbosity: 1,
+             cacheRoot: "./build/rts2-cache",
+             // false = Put the declaration files into the regular output in lib/
+             useTsconfigDeclarationDir: false
+         }),
         commonjs({
             extensions: [".js", ".ts"]
         }),
@@ -82,4 +121,7 @@ export default {
             })
         }
     ]
-}
+};
+
+export default options;
+

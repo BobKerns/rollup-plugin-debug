@@ -19,11 +19,18 @@ out
 log
 stdout
 stderr
+*.orig
+
+public/bundle.*
+.env
+.env.build
+build/
 
 /*-report.html
 node_modules
 /build
 /dist
+/docs
 /lib
 /devtools/build
 /devtools/dist

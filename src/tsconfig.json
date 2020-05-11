@@ -1,9 +1,16 @@
 {
   // Inherit the project settings.
   "extends": "../tsconfig",
+  "include": [
+    "*.ts"
+  ],
+  "exclude": ["node_modules"],
 
   "compilerOptions": {
+    // "composite": true
+    // "tsBuildInfoFile": "../build/.tsbuild-info-src"
     // Project layout. Changes not recommended.
-    // "outDir":"lib",
-    "rootDir": ".",
+    "outDir": "../build/src",
+    "rootDir": "."
+  }
 }

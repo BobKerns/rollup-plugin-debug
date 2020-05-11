@@ -14,7 +14,7 @@
     "moduleResolution": "node",
 
     // Project layout. Changes not recommended.
-    "outDir":"lib",
+    "outDir":"../build/config",
     "rootDir": ".",
 
      // Generation of .d.ts files. and debugging source maps.
@@ -27,6 +27,6 @@
     // But if we don't separate the build info cache, it will
     // get out of sync clean theå lib/ directory.
     "incremental": true,
-    "tsBuildInfoFile": "./build/.tsbuild-info"
+    "tsBuildInfoFile": "../build/config/tsbuild-info"
   }
 }

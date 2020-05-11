@@ -1,0 +1,16 @@
+# Describe how to build and deploy this project with the Travis CI system. This is integrated with GitHub checkins
+# For details, see https://docs.travis-ci.com/user/for-beginners/
+language: node_js
+# Test on a selection of operating systems
+os:
+  - linux
+#  - osx
+#  - windows
+# Build with both the latest Node version. (Uncomment lts/* to also build on the latest LTS)
+node_js:
+  - node
+# - lts/*
+# Cache the modules we build against.
+cache: npm
+# Build by running the tests (this is the Travis default)
+script: npm test
