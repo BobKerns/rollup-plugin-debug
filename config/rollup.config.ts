@@ -11,11 +11,24 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
-import visualizer from 'rollup-plugin-visualizer';
-import {OutputOptions, PluginContext, RollupOptions} from "rollup";
+import visualizerNoName, {VisualizerOptions} from 'rollup-plugin-visualizer';
+import {OutputOptions, RollupOptions} from "rollup";
 import {chain as flatMap} from 'ramda';
 
+/**
+ * The visualizer plugin fails to set the plugin name. We wrap it to remedy that.
+ * @param opts
+ */
+const visualizer = (opts?: Partial<VisualizerOptions>) => {
+    const noname: Partial<Plugin> = visualizerNoName(opts);
+    return {
+        name: "Visualizer",
+        ...noname
+    };
+}
+
 const mode = process.env.NODE_ENV;
+// noinspection JSUnusedLocalSymbols
 const dev = mode === 'development';
 
 /**
@@ -113,15 +126,12 @@ const options: RollupOptions = {
         terser({
             module: true
         }),
-        {
-            name: 'visualizer',
-            ...visualizer({
-                filename: "build/build-stats.html",
-                title: "Build Stats"
-            })
-        }
+        visualizer({
+            filename: "build/build-stats.html",
+            title: "Build Stats"
+        })
     ]
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default options;
-

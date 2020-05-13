@@ -58,7 +58,7 @@
     "typedoc-plugin-external-module-name": "^3.1.0",
     "typedoc-plugin-mermaid": "^1.2.0",
     "typedoc-plugin-npm-externals": "^1.0.0",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.2",
     "wcsize": "^1.0.0"
   }
 }
