@@ -12,3 +12,13 @@ jest.config.js
 rollup.config.js
 tsconfig.json
 typedoc.json
+.circleci/
+.github/
+bin/
+observablehq/*.tgz
+_config.yml
+.idea/
+CHANGELOG.md
+README.md
+docdest/
+imports/

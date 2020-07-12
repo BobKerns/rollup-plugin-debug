@@ -3,7 +3,7 @@
   "exclude": ["config", "devtools", "lib", "build", ".idea", ".rpt2-cache"],
   "compilerOptions": {
     /* Basic Options */
-    "target": "es2018",
+    "target": "ESNext",
     /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
     "module": "ESNext",
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */

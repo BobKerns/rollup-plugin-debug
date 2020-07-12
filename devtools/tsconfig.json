@@ -25,7 +25,7 @@
 
     // Speed up compilation. Not important at this scale.
     // But if we don't separate the build info cache, it will
-    // get out of sync clean theå lib/ directory.
+    // get out of sync clean the lib/ directory.
     "incremental": true,
     "tsBuildInfoFile": "../build/devtools/tsbuild-info"
   }

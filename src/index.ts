@@ -1,14 +1,19 @@
-/**
- * @module SampleCode Foobar is the Baz
- */
-/**
- * This is a text description. Module comments have to be at the very start of the file.
+/*
+ * @module NpmRollupTemplate
+ * Copyright 2020 by Bob Kerns. Licensed under MIT license.
  *
- * It has two paragraphs and a
- * @preferred
+ * Github: https://github.com/BobKerns/npm-typescript-rollup-template
  */
 
-import * as R from 'ramda';
+/**
+ * Load the full system with a single import.
+ * @packageDocumentation
+ * @preferred
+ * @module Index
+ */
+
+import R from 'ramda';
+
 /**
  * [Typedoc](https://typedoc.org/guides/doccomments/) is supported. It supports:
  *
