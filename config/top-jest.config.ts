@@ -2,6 +2,7 @@
  * Copyright © 2019. Licensed under MIT license.
  */
 
+// noinspection JSUnusedGlobalSymbols
 export default {
     preset: 'ts-jest',
     testMatch: [
@@ -14,5 +15,6 @@ export default {
         // need to use /src/ to ensure we only match below a /src/ directory (presumably ours).
         "!/src/**/{node_modules,lib,build,docs,tmp}/**"
     ],
-    rootDir: "src"
+    rootDir: "src",
+    "maxConcurrency": 10
 };

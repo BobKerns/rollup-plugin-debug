@@ -1,6 +1,6 @@
 /**
  * @module NpmTemplate
- * Copyright  by Bob Kerns. Licensed under MIT license
+ * Copyright 2020 by Bob Kerns. Licensed under MIT license.
  */
 
 /**
@@ -11,12 +11,34 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
-import visualizer from 'rollup-plugin-visualizer';
-import {OutputOptions, PluginContext, RollupOptions} from "rollup";
+import visualizerNoName, {VisualizerOptions} from 'rollup-plugin-visualizer';
+import {OutputOptions, RollupOptions} from "rollup";
 import {chain as flatMap} from 'ramda';
+import externalGlobals from "rollup-plugin-external-globals";
+import serve from "rollup-plugin-serve";
+
+/**
+ * The visualizer plugin fails to set the plugin name. We wrap it to remedy that.
+ * @param opts
+ */
+const visualizer = (opts?: Partial<VisualizerOptions>) => {
+    const noname: Partial<Plugin> = visualizerNoName(opts);
+    return {
+        name: "Visualizer",
+        ...noname
+    };
+}
 
 const mode = process.env.NODE_ENV;
+// noinspection JSUnusedLocalSymbols
 const dev = mode === 'development';
+const serve_mode = process.env.SERVE && dev;
+const serve_doc = process.env.SERVE_DOC && serve_mode;
+
+/**
+ * Avoid non-support of ?. optional chaining.
+ */
+const DISABLE_TERSER = true;
 
 /**
  * A rough description of the contents of [[package.json]].
@@ -42,17 +64,21 @@ export const outputs = (p: Package) => flatMap((e: OutputOptions) => (e.file ? [
             format: 'umd',
             sourcemap: true,
             globals: {
-                "ramda": "ramda"
+                katex: "katex",
+                d3: "d3",
+                "@observablehq/stdlib": "observablehq"
+                // "ramda": "ramda",
+                // "gl-matrix": "glMatrix"
             }
         },
         {
-            file: p.main,
             format: 'cjs',
+            file: p.main,
             sourcemap: true
         },
         {
-            file: p.module,
             format: 'esm',
+            file: p.module,
             sourcemap: true
         }
     ]) as OutputOptions;
@@ -83,8 +109,8 @@ const dbg: any = {name: 'dbg'};
  * @param from
  * @param resolved
  */
-const checkExternal = (id: string, from: string, resolved: boolean) =>
-    (resolved
+const checkExternal = (id: string, from?: string, resolved?: boolean): boolean =>
+    !/gl-matrix|glMatrix/i.test(id) && (resolved
         ? /node_modules/.test(id)
         : !/^\./.test(id));
 
@@ -93,12 +119,11 @@ const options: RollupOptions = {
     output: outputs(pkg),
     external: checkExternal,
     plugins: [
-        // dbg,
         resolve({
             // Check for these in package.json
             mainFields: mainFields(pkg, ['module', 'main', 'browser'])
         }),
-         typescript({
+        typescript({
              tsconfig: 'src/tsconfig.json',
              include: "src/*.ts",
              objectHashIgnoreUnknownHack: true,
@@ -110,18 +135,31 @@ const options: RollupOptions = {
         commonjs({
             extensions: [".js", ".ts"]
         }),
-        terser({
-            module: true
+        externalGlobals({
+            // 'gl-matrix': "glMatrix",
+            //'katex': 'katex',
+            'ramda': 'ramda'
         }),
-        {
-            name: 'visualizer',
-            ...visualizer({
-                filename: "build/build-stats.html",
-                title: "Build Stats"
+        ...(!dev && !DISABLE_TERSER) ? [
+            terser({
+            module: true
+        })
+        ] : [],
+        visualizer({
+            filename: "build/build-stats.html",
+            title: "Build Stats"
+        }),
+        ...serve_mode ? [
+            serve({
+                open: !!serve_doc,
+                verbose: true,
+                port: 5000,
+                contentBase: '',
+                openPage: '/docs/api/index.html'
             })
-        }
+        ] : []
     ]
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default options;
-

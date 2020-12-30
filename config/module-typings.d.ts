@@ -1,6 +1,12 @@
-// Copyright  by Bob Kerns. Licensed under MIT license
+/*
+ * @module physics-math
+ * Copyright 2020 by Bob Kerns. Licensed under MIT license.
+ *
+ * Github: https://github.com/BobKerns/physics-math
+ */
 
 // We supply the missing type information for the terser plugin.
+
 
 declare module "rollup-plugin-terser" {
     import {Plugin} from "rollup";
@@ -29,5 +35,59 @@ declare module "rollup-plugin-visualizer" {
         open: boolean;
         openOptions: OpenOptions;
     }
+
     export default function visualizer(options?: Partial<VisualizerOptions>): VisualizerPartialPlugin;
+}
+
+declare module 'rollup-plugin-external-globals' {
+    // noinspection JSUnusedGlobalSymbols,JSDuplicatedDeclaration
+    export default function externalGlobals(globals: any): Plugin;
+}
+
+interface ServeOptions {
+    // Launch in browser (default: false)
+    open?: boolean; // true
+
+    // Page to navigate to when opening the browser.
+    // Will not do anything if open=false.
+    // Remember to start with a slash.
+    openPage?: string;
+
+    // Show server address in console (default: true)
+    verbose?: boolean; // false
+
+    // Folder to serve files from
+    contentBase: string|string[]; // ''
+
+    // Set to true to return index.html (200) instead of error page (404)
+    historyApiFallback?: boolean|string; // false
+
+    // Options used in setting up server
+    host?: string; // 'localhost',
+    port?: number; // 10001,
+
+    // By default server will be served over HTTP (https: false). It can optionally be served over HTTPS
+    https?: {
+        key: string; // fs.readFileSync('/path/to/server.key'),
+        cert: string; // fs.readFileSync('/path/to/server.crt'),
+        ca: string; // fs.readFileSync('/path/to/ca.pem')
+    };
+
+    //set headers
+    headers?: { [k: string]: string; }; // 'Access-Control-Allow-Origin': '*'
+}
+
+declare module 'rollup-plugin-serve' {
+    // noinspection JSDuplicatedDeclaration,JSUnusedGlobalSymbols
+    export default function serve(options?: ServeOptions): Plugin;
+}
+
+declare module '@observablehq/stdlib' {
+    export namespace Generator {
+        export function observe<T>(f: (notify: (n: T) => void) => void): AsyncIterableIterator<T>;
+    }
+}
+
+declare module 'acorn-optional-chaining' {
+    export default function <T>(p: T): T;
 }

@@ -3,7 +3,7 @@
  */
 
 /**
- * Require from one location as if it were from nother.
+ * Require from one location as if it were from another.
  */
 
 const fs = require('fs');
@@ -17,6 +17,7 @@ const EXTS = ["", ".js", ".mjs", ".json"];
 
 const DBG =( process.env.DEBUG_REQUIRE_FROM) ? (...args: any[]) => console.log(...args) : () => undefined;
 
+// noinspection JSUnusedGlobalSymbols
 export function requireFrom(parent: Module, srcDir: string, implDir: string) {
     const pdir = path.dirname(path.resolve(parent ? parent.filename || '.' : '.'));
     srcDir = path.resolve(pdir, srcDir);
@@ -35,30 +36,30 @@ export function requireFrom(parent: Module, srcDir: string, implDir: string) {
                 options && (resolverPaths = options);
                 return require.resolve(path.relative(srcDir, path.resolve(implDir, id)))
             }) as RequireResolve;
-            resolver.paths = (request: string) => resolverPaths.paths || null;
+            resolver.paths = () => resolverPaths.paths || null;
              return resolver;
         };
-        const nrequire: NodeRequire = ((p: string) : any => {
+        const nRequire: NodeRequire = ((p: string) : any => {
             if (!p.startsWith('.')) {
                 DBG("Ordinary require:", p);
                 return parent.require(p);
             }
-            const apath = path.resolve(srcDir, p);
+            const aPath = path.resolve(srcDir, p);
             if (p.startsWith('..')) {
-                
-                const prelpath = './'+ path.relative(pdir, apath);
-                DBG("Parent require:", p, prelpath);
-                return parent.require(prelpath);
+
+                const pRelPath = './'+ path.relative(pdir, aPath);
+                DBG("Parent require:", p, pRelPath);
+                return parent.require(pRelPath);
             }
-            const relpath = path.relative(srcDir, apath);
+            const relpath = path.relative(srcDir, aPath);
             const result = EXTS.reduce((prev: any | Error | null, ext: string) => {
                 if (prev === null || prev instanceof Error) {
                     try {
                         const rpath = path.join(implDir2, `${relpath}${ext}`);
-                        DBG("RPATH", p, ext, apath, __dirname, relpath, rpath);
+                        DBG("RPATH", p, ext, aPath, __dirname, relpath, rpath);
                         return parent.require(rpath);
                     } catch (e) {
-                        DBG("FAIL", p, ext, apath, __dirname, relpath);
+                        DBG("FAIL", p, ext, aPath, __dirname, relpath);
                         return prev instanceof Error ? prev : e;
                     }
                 }
@@ -71,8 +72,8 @@ export function requireFrom(parent: Module, srcDir: string, implDir: string) {
             childModule.loaded = true;
             return result;
         }) as NodeRequire;
-        childModule.require = nrequire;
-        nrequire.resolve = makeResolver();
+        childModule.require = nRequire;
+        nRequire.resolve = makeResolver();
 
         const childGlobal = vm.createContext({
             ...global,
@@ -81,7 +82,7 @@ export function requireFrom(parent: Module, srcDir: string, implDir: string) {
             module: childModule,
             __dirname: srcDir,
             __filename: codeFile,
-            require: nrequire
+            require: nRequire
         });
         childGlobal.global = childGlobal;
         const code = fs.readFileSync(codeFile, "utf-8");

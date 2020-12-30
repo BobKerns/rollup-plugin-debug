@@ -7,18 +7,11 @@ indent_style=space
 indent_size=4
 
 [{.eslintrc,.prettierrc,.babelrc,jest.config,.stylelintrc,*.bowerrc,*.jsb3,*.jsb2,*.graphqlconfig,*.json}]
-indent_style=space
-indent_size=2
-
-[{tsconfig.lib.json,tsconfig.app.json,tsconfig.e2e.json,tsconfig.spec.json,tsconfig.json}]
-indent_style=space
 indent_size=2
 
 [*.js.map]
-indent_style=space
 indent_size=2
 
 [{.analysis_options,*.yml,*.yaml}]
-indent_style=space
 indent_size=2
 
