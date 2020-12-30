@@ -1,12 +1,15 @@
-# NPM Project Template
+# rollup-plugin-debug rollup trace utility
 
-This is a customizable project template. You should replace this file and and code with your own.
+The main code lives in [rollup-plugin-debug.ts](rollup-plugin-debug.ts).
 
-* Out-of-the-box buildable
-* Travis-CI enabled
-* NPM publish ready.
-* TypeDoc enabled, with Mermaid and PlantUML diagrams
-* Jest Unit Tests
-* Simplified Rollup configuration for packaging for Node and Web (UMD, CommonJS, ES Modules)
+## TO DO
+
+Formatting is handled by [padding.ts](padding.ts)_ The organization is a bit weak; padding.ts really should be able to
+be a standalone [rollup-plugin-debug rollup trace utility]
+
+`plugins` and `trace` need to be separaed out.
 
 [[include:README.md]]
+
+[rollup-plugin-debug rollup trace utility]: #rollup-plugin-debug-rollup-trace-utility
+
