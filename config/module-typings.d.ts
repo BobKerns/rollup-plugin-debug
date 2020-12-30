@@ -21,6 +21,8 @@ declare module "rollup-plugin-terser" {
 
 // We supply missing type information for the visualizer plugin.
 
+type VisualizerPartialPlugin = Omit<Plugin, "name">;
+
 declare module "rollup-plugin-visualizer" {
     export interface OpenOptions {
         app: string | string[];
@@ -35,7 +37,7 @@ declare module "rollup-plugin-visualizer" {
     }
 
     // noinspection JSDuplicatedDeclaration,JSUnusedGlobalSymbols
-    export default function visualizer(options?: Partial<VisualizerOptions>): Plugin;
+    export default function visualizer(options?: Partial<VisualizerOptions>): VisualizerPartialPlugin;
 }
 
 declare module 'rollup-plugin-external-globals' {
