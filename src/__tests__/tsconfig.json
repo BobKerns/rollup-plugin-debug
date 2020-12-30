@@ -5,7 +5,7 @@
     "error-handling.ts",
     "test-debug.ts"
   ],
-  "include": ["*.ts"],
+  "include": ["*.ts", "../*.d.ts"],
   "exclude": ["node_modules"],
 
   "references": [

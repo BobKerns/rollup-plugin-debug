@@ -1,6 +1,8 @@
 import {plugins} from '../rollup-plugin-debug';
-describe("Dummy test", () => {
-    test("Hello", async () => {
-        expect((await plugins)()).toBe("HELL WRLD!");
-    })
+describe("Plugin tests", () => {
+    expect(plugins()).toHaveLength(0);
+    test("Describe", () =>
+        expect(plugins().describe).toBeInstanceOf(Function));
+    test("Debug", () =>
+        expect(plugins().debug).toBeInstanceOf(Function));
 });
