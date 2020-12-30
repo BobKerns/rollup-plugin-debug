@@ -1,1 +1,1 @@
-import "./hello-world.ts";
+import "./test-debug.ts";

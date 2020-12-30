@@ -3,7 +3,7 @@
   "extends": "../tsconfig.json",
   "files": [
     "error-handling.ts",
-    "hello-world.ts"
+    "test-debug.ts"
   ],
   "include": ["*.ts"],
   "exclude": ["node_modules"],

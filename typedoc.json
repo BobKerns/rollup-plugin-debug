@@ -1,6 +1,6 @@
 {
-  "exclude": "**/__tests__/**",
-  "name": "NPM Template Project (rename me!)",
+  "exclude": ["**/__tests__/**", "./src/present.d.ts"],
+  "name": "rollup-plugin-debug",
   "readme": "src/README.md",
-  "includes": "./"
+  "includes": "./src/rollup-plugin-debug.ts"
 }

@@ -125,7 +125,7 @@ const options: RollupOptions = {
         }),
         typescript({
              tsconfig: 'src/tsconfig.json',
-             include: "src/*.ts",
+             include: "*.ts",
              verbosity: 1,
              cacheRoot: "./build/rts2-cache",
              // false = Put the declaration files into the regular output in lib/
