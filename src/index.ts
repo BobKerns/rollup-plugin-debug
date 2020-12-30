@@ -29,6 +29,6 @@ import R from 'ramda';
  *   A-->B;
  *   B-->C;
  */
-export default function hello() {
+export function hello() {
     return R.map(a => a.toUpperCase(), "Hello, World!".split(/()/)).filter(a => /[^o,]/i.test(a)).join('');
 }
