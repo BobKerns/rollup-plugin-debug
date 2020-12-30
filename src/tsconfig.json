@@ -7,8 +7,9 @@
   "exclude": ["node_modules"],
 
   "compilerOptions": {
-    // "composite": true
-    // "tsBuildInfoFile": "../build/.tsbuild-info-src"
+    // "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "../build/tsbuild-info-src",
     // Project layout. Changes not recommended.
     "outDir": "../build/src",
     "rootDir": "."

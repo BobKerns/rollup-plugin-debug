@@ -22,9 +22,9 @@
     "rootDir": "./src",
     /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     "composite": false,                     /* Enable project compilation */
-    "incremental": false,
+    "incremental": true,
     /* Enable incremental compilation */
-    // "tsBuildInfoFile": "./build/.tsbuild-info",
+    "tsBuildInfoFile": "./build/.tsbuild-info",
     /* Specify file to store incremental compilation information */
     // "removeComments": true,                /* Do not emit comments to output. */
     // "noEmit": true,                        /* Do not emit outputs. */
